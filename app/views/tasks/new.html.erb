@@ -1,0 +1,52 @@
+<div class="flex justify-center m-4 text-2xl">
+    <h2>クエストを立てる</h2>
+</div>
+
+<%= form_for @task do |form| %>
+<section class="text-gray-600 body-font relative">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-12">
+        <%= form.label :title, "クエストのタイトル", class: 'leading-7 text-gray-600 text-4xl mb-8' %>
+        <%= form.text_field :title, class: 'sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900 text-center w-3/5 m-auto bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out' %>
+        <% if @task.errors.include?(:title) %>
+           <p class="text-red-400"><%= @task.errors.full_messages_for(:title).first %></p>
+        <% end %>
+      
+        <%= form.label :detail, "クエストの詳細", class: 'leading-7 text-gray-600 text-2xl mb-4' %>
+        <%= form.text_area :detail, class: ' mx-auto leading-relaxed text-base w-3/5 h-fit bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out' %>
+        <% if @task.errors.include?(:detail) %>
+           <p class="text-red-400"><%= @task.errors.full_messages_for(:detail).first %></p>
+        <% end %>
+        
+    </div>
+    <div class="lg:w-1/2 md:w-2/3 mx-auto">
+      <div class="flex justify-around -m-2">
+        <div class="p-2 w-6/12">
+          <div class="relative">
+            <label for="name" class="leading-7 text-sm text-gray-600">優先度</label>
+            <%= form.number_field :priority, class: 'text-sm mb-4 text-gray-900 text-center w-3/5 m-auto bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 outline-none text-gray-700 py-0.5 px-1 leading-8 transition-colors duration-200 ease-in-out' %>
+            <% if @task.errors.include?(:priority) %>
+               <p class="text-red-400"><%= @task.errors.full_messages_for(:priority).first %></p>
+            <% end %>
+          </div>
+        </div>
+        <div class="p-2 w-6/12">
+          <div class="relative">
+            <label for="email" class="leading-7 text-sm text-gray-600">〆切</label>
+            <%= form.date_field :deadline, class: 'text-sm mb-4 text-gray-900 text-center w-3/5 m-auto bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 outline-none text-gray-700 py-0.5 px-1 leading-8 transition-colors duration-200 ease-in-out w-fit' %>
+            <% if @task.errors.include?(:deadline) %>
+               <p class="text-red-400"><%= @task.errors.full_messages_for(:deadline).first %></p>
+            <% end %>
+          </div>
+        </div>
+        
+      </div>
+        <div class="p-2 m-auto">
+          <button class="flex justify-center mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"><%= form.submit %></button>
+        </div>
+    </div>
+  </div>
+</section>
+<% end %>
+
+

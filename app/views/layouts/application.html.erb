@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>TestApp</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    
+    <div class="flex relative">
+      <% if user_signed_in? %>
+      <div id="menu" class="hidden fixed left-0 lg:static lg:flex flex-col w-96 h-screen py-8 bg-white border-r dark:bg-gray-800 dark:border-gray-600">
+        <h2 class="text-3xl font-semibold text-center text-gray-800 dark:text-white">Menu</h2>
+        <div class="flex flex-col items-center mt-6 -mx-2">
+            <img class="object-cover w-24 h-24 mx-2 rounded-full" src="https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="avatar">
+            <h4 class="mx-2 mt-2 font-medium text-gray-800 dark:text-gray-200 hover:underline">勇者ヨシヒコ</h4>
+            <p class="mx-2 mt-1 text-sm font-medium text-gray-600 dark:text-gray-400 hover:underline"><%= current_user.email %></p>
+        </div>
+        
+        <div class="flex flex-col justify-between flex-1 mt-6">
+            <nav>
+                <a class="flex items-center px-4 py-2 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="/">
+                    <i class="fas fa-gopuram text-xl"></i>
+                    <span class="mx-4 font-medium">ログイン</span>
+                </a>
+                
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="/tasks/new">
+                    <i class="fas fa-scroll"></i>
+                    <span class="mx-4 font-medium">クエストを立てる</span>
+                </a>
+
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="/tasks">
+                    <i class="fas fa-dungeon"></i>
+                    <span class="mx-4 font-medium">クエストボード</span>
+                </a>
+
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="/tasks/start">
+                    <i class="fas fa-scroll"></i>
+                    <span class="mx-4 font-medium">進行中のクエスト</span>
+                </a>
+
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="/tasks/failure">
+                    <i class="fas fa-scroll"></i>
+                    <span class="mx-4 font-medium">失敗したクエスト</span>
+                </a>
+
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="/tasks/finish">
+                    <i class="fas fa-scroll"></i>
+                    <span class="mx-4 font-medium">達成済みのクエスト</span>
+                </a>
+                
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="/ranking">
+                    <i class="fas fa-crown"></i>
+                    <span class="mx-4 font-medium">冒険者ランキングを見る</span>
+                </a>
+
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="/mypage">
+                    <i class="fas fa-id-card"></i>
+                    <span class="mx-4 font-medium">ギルドカード</span>
+                </a>
+
+                <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700 dark:hover:text-gray-200 hover:text-gray-700" href="/settings">
+                    <i class="fas fa-cog text-xl"></i>
+                    <span class="mx-4 font-medium">冒険準備</span>
+                </a>
+            </nav>
+        </div>
+    </div>
+      <button id="menuBtn" class="lg:hidden fixed left-4 top-4">
+          <i id="menuBtnOpen" class="fas fa-bars fa-2x"></i>
+          <i id="menuBtnClose" class="fas fa-times fa-2x hidden"></i>
+      </button>
+      <% end %>
+      <!-- contents -->
+      <!--<p class="notice"><%= notice %></p>-->
+      <!--<p class="alert"><%= alert %></p>-->
+      <div class="w-full h-screen">
+        <%= yield %>
+      </div>
+    </div>
+    
+
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </body>
+</html>

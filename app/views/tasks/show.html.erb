@@ -1,0 +1,52 @@
+
+<div class="flex justify-center m-4 text-2xl">
+    <h2>クエストの詳細</h2>
+</div>
+
+<section class="text-gray-600 body-font relative">
+  <div class="container px-5 py-24 mx-auto">
+    <div class="flex flex-col text-center w-full mb-12">
+        <h1 class="leading-7 text-gray-600 text-4xl mb-8"><%= @task.title %></h1>
+        <p class="leading-7 text-gray-600 text-2xl mb-4"><%= @task.detail %></p>
+    </div>
+    <div class="lg:w-1/2 md:w-2/3 mx-auto">
+      <div class="flex flex-wrap -m-2">
+        <div class="p-2 w-1/2">
+          <div class="relative">
+            <label for="name" class="leading-7 text-sm text-gray-600">優先度</label>
+            <div tabindex="0" class="focus:outline-none flex pt-4">
+                <% 5.times do |index| %>
+                    <% if @task.priority > index %>
+                        <i class="fas fa-star"></i>
+                    <% else %>
+                        <i class="far fa-star"></i>
+                    <% end %>  
+                <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="p-2 w-1/2">
+          <div class="relative">
+            <label for="email" class="leading-7 text-sm text-gray-600">〆切</label>
+            <p><%= @task.deadline %></p>
+          </div>
+        </div>
+        
+        <div class="p-2 w-1/2 mb-4">
+          <div class="relative">
+            <label for="message" class="leading-7 text-sm text-gray-600">ペナルティ</label>
+            <p><%= @task.penalty %></p>
+          </div>
+        </div>
+
+        
+      </div>
+      <div class="p-2 m-auto flex flex-wrap justify-around gap-y-4">
+          <button class="w-5/12 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"><%= link_to '受注する', start_task_path(@task), method: 'post' %></button>
+          <button class="w-5/12 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"><%= link_to '完了する', finish_task_path(@task), method: 'post' %></button>
+          <button class="w-5/12 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"><%= link_to '諦める', failure_task_path(@task), method: 'post' %></button>
+          <button class="w-5/12 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg"><%= link_to '編集する', edit_task_path(@task), method: 'get' %></button>
+      </div>
+    </div>
+  </div>
+</section>
